@@ -4,7 +4,7 @@ metadata:
   name: ansible-entrypoint
 data:
   entrypoint.sh: |
-    #!/bin/bash
+    #!/bin/sh
     git clone https://github.com/huynhdnguyen/ansible.git /app/repo
     cd /app/repo
     ansible-playbook your-playbook.yml
@@ -20,7 +20,7 @@ spec:
       containers:
       - name: ansible-runner
         image: cytopia/ansible:latest
-        command: ["/bin/bash", "-c", "/app/entrypoint.sh"]
+        command: ["/bin/sh", "-c", "/app/entrypoint.sh"]
         volumeMounts:
         - name: entrypoint-script
           mountPath: /app/entrypoint.sh
