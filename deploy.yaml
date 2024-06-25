@@ -13,7 +13,7 @@ data:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ansible-runner-job
+  name: ansible-runner-job-
 spec:
   ttlSecondsAfterFinished: 100  # Job sẽ được xóa sau 100 giây sau khi hoàn thành
   template:
