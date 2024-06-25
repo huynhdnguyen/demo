@@ -15,7 +15,7 @@ kind: Job
 metadata:
   name: ansible-runner-job
 spec:
-  ttlSecondsAfterFinished: 300
+  #ttlSecondsAfterFinished: 300
   template:
     spec:
       containers:
