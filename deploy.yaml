@@ -5,7 +5,7 @@ metadata:
 data:
   entrypoint.sh: |
     #!/bin/sh
-    git clone https://github.com/your-username/ansible-echo-example.git /app/repo
+    git clone https://github.com/huynhdnguyen/ansible.git /app/repo
     cd /app/repo
     ansible-playbook your-playbook.yml
 
