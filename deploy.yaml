@@ -5,8 +5,6 @@ metadata:
 data:
   entrypoint.sh: |
     #!/bin/sh
-    mkdir -p /app/repo
-    apk add --no-cache git
     git clone https://github.com/huynhdnguyen/ansible.git /app/repo
     cd /app/repo
     ansible-playbook your-playbook.yml
@@ -22,7 +20,7 @@ spec:
     spec:
       containers:
       - name: ansible-runner
-        image: alpine:latest  # Use an image with package manager support
+        image: cytopia/ansible:latest  # Sử dụng image cytopia/ansible
         command: ["/bin/sh", "-c", "cp /scripts/entrypoint.sh /tmp/entrypoint.sh && chmod +x /tmp/entrypoint.sh && /tmp/entrypoint.sh"]
         volumeMounts:
         - name: entrypoint-script
