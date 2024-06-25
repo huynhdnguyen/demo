@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: ansible-runner
-        image: willhallonline/ansible:latest
+        image: cytopia/ansible:latest
         command: ["/bin/bash", "-c", "/app/entrypoint.sh"]
         volumeMounts:
         - name: entrypoint-script
