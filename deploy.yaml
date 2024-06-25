@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ansible-runner-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: ansible-runner
+        image: willhallonline/ansible:latest
+        command: ["/bin/bash", "-c", "/app/entrypoint.sh"]
+        volumeMounts:
+        - name: entrypoint-script
+          mountPath: /app/entrypoint.sh
+          subPath: entrypoint.sh
+          readOnly: true
+        - name: ssh-key
+          mountPath: /root/.ssh
+        env:
+        - name: GIT_SSH_COMMAND
+          value: "ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no"
+      restartPolicy: Never
+      volumes:
+      - name: entrypoint-script
+        configMap:
+          name: ansible-entrypoint
+      - name: ssh-key
+        secret:
+          secretName: ssh-key-secret
+  backoffLimit: 0  # Đảm bảo Job không được khởi động lại nếu thất bại
