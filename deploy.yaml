@@ -21,10 +21,10 @@ spec:
       containers:
       - name: ansible-runner
         image: cytopia/ansible:latest
-        command: ["/bin/sh", "-c", "/app/entrypoint1.sh"]
+        command: ["/bin/sh", "-c", "/entrypoint1.sh"]
         volumeMounts:
         - name: entrypoint-script
-          mountPath: /app/entrypoint1.sh
+          mountPath: /entrypoint1.sh
           subPath: entrypoint1.sh
           readOnly: true
       restartPolicy: Never
