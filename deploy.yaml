@@ -5,6 +5,7 @@ metadata:
 data:
   entrypoint.sh: |
     #!/bin/sh
+    chmod +x /entrypoint1.sh
     git clone https://github.com/huynhdnguyen/ansible.git /app/repo
     cd /app/repo
     ansible-playbook your-playbook.yml
@@ -21,11 +22,11 @@ spec:
       containers:
       - name: ansible-runner
         image: cytopia/ansible:latest
-        command: ["/bin/sh", "-c", "/entrypoint1.sh"]
+        command: ["/bin/sh", "-c", "chmod +x /entrypoint1.sh && /entrypoint1.sh"]
         volumeMounts:
         - name: entrypoint-script
           mountPath: /entrypoint1.sh
-          subPath: entrypoint1.sh
+          subPath: entrypoint.sh
           readOnly: true
       restartPolicy: Never
       volumes:
