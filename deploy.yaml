@@ -26,8 +26,6 @@ spec:
           mountPath: /app/entrypoint.sh
           subPath: entrypoint.sh
           readOnly: true
-        - name: ssh-key
-          mountPath: /root/.ssh
         env:
         - name: GIT_SSH_COMMAND
           value: "ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no"
@@ -36,7 +34,4 @@ spec:
       - name: entrypoint-script
         configMap:
           name: ansible-entrypoint
-      - name: ssh-key
-        secret:
-          secretName: ssh-key-secret
   backoffLimit: 0  # Đảm bảo Job không được khởi động lại nếu thất bại
