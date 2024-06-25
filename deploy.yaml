@@ -18,26 +18,15 @@ spec:
   ttlSecondsAfterFinished: 100  # Job sẽ được xóa sau 100 giây sau khi hoàn thành
   template:
     spec:
-      initContainers:
-      - name: init-permissions
-        image: busybox
-        command: ['sh', '-c', 'chmod +x /app/entrypoint.sh']
-        volumeMounts:
-        - name: entrypoint-script
-          mountPath: /app/entrypoint.sh
-          subPath: entrypoint.sh
       containers:
       - name: ansible-runner
         image: cytopia/ansible:latest
-        command: ["/bin/sh", "-c", "/app/entrypoint.sh"]
+        command: ["/bin/sh", "-c", "/app/entrypoint1.sh"]
         volumeMounts:
         - name: entrypoint-script
-          mountPath: /app/entrypoint.sh
-          subPath: entrypoint.sh
+          mountPath: /app/entrypoint1.sh
+          subPath: entrypoint1.sh
           readOnly: true
-        env:
-        - name: GIT_SSH_COMMAND
-          value: "ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no"
       restartPolicy: Never
       volumes:
       - name: entrypoint-script
