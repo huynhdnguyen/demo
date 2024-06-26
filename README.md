@@ -1,2 +1,2 @@
-# demo
+# App demo
 # demo
